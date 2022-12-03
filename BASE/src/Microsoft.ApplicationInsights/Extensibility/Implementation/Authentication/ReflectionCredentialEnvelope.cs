@@ -17,7 +17,7 @@
     /// Our SDK currently targets net452, net46, and netstandard2.0.
     /// Azure.Core.TokenCredential is only available for netstandard2.0.
     /// </remarks>
-    internal class ReflectionCredentialEnvelope : CredentialEnvelope
+    public class ReflectionCredentialEnvelope : CredentialEnvelope
     {
 #if REDFIELD
         private static volatile string azureCoreAssemblyName = "Azure.Identity.ILRepack";
@@ -139,8 +139,8 @@
         /// <summary>
         /// This class provides Reflection based wrappers around types found in the Azure.Core library.
         /// Because of framework incompatibilities, we cannot take a direct reference on these types.
-        /// 
-        /// This class uses compiled Expression Trees. Read more here: 
+        ///
+        /// This class uses compiled Expression Trees. Read more here:
         /// (https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/expression-trees/).
         /// (https://docs.microsoft.com/dotnet/csharp/expression-trees).
         /// </summary>
@@ -307,7 +307,7 @@
                 Type typeCancellationToken = typeof(CancellationToken);
                 var methodInfo_GetTokenAsync = typeTokenCredential.GetMethod(name: "GetTokenAsync", types: new Type[] { typeTokenRequestContext, typeCancellationToken });
                 var methodInfo_AsTask = methodInfo_GetTokenAsync.ReturnType.GetMethod("AsTask");
-                
+
                 var parameterExpression_Task = Expression.Parameter(type: methodInfo_AsTask.ReturnType, name: "parameterExpression_Task");
 
                 var exprResultProperty = Expression.Property(

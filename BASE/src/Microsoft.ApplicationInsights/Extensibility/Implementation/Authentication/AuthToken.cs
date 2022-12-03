@@ -6,7 +6,7 @@
     /// This represents the Azure.Core.AccessToken returned by Azure.Core.TokenCredential.
     /// (https://github.com/Azure/azure-sdk-for-net/blob/master/sdk/core/Azure.Core/src/AccessToken.cs).
     /// </summary>
-    internal struct AuthToken : IEquatable<AuthToken>
+    public struct AuthToken : IEquatable<AuthToken>
     {
         /// <summary>
         /// Initializes a new instance of <see cref="AuthToken"/>.

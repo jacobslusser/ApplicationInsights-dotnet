@@ -1,11 +1,10 @@
 ﻿<Project ToolsVersion="15.0" Sdk="Microsoft.NET.Sdk">
   <Import Project="$(PropsRoot)\Product.props" />
-  
+
   <PropertyGroup>
     <RootNamespace>Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel</RootNamespace>
     <AssemblyName>Microsoft.AI.ServerTelemetryChannel</AssemblyName>
-    <TargetFrameworks>net452;netstandard2.0</TargetFrameworks>
-    <TargetFrameworks Condition="$(OS) != 'Windows_NT'">netstandard2.0</TargetFrameworks>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -16,22 +15,22 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Microsoft.ApplicationInsights\Microsoft.ApplicationInsights.csproj" />
+    <PackageReference Include="Microsoft.ApplicationInsights" Version="2.20.0" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net452'">
     <PackageReference Include="Microsoft.Diagnostics.Tracing.EventRegister" Version="1.1.28">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
-    
+
     <Reference Include="System.Web" />
     <Reference Include="System.Net.Http" />
   </ItemGroup>
-  
+
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <PackageReference Include="System.IO.FileSystem.AccessControl" Version="4.7.0" />
   </ItemGroup>
-  
+
   <ItemGroup>
     <Content Include="ApplicationInsights.config.install.xdt" />
     <Content Include="ApplicationInsights.config.transform" />
